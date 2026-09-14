@@ -36,8 +36,8 @@ window.addEventListener("load", () => {
   showSection(window.location.hash || "#/");
 });
 
-// Formulario: agregar transaccion
-transaccionesFormularioEl.addEventListener("submit", (e) => {
+// Formulario: agregar transaccion 
+TransaccionesFormularioEl.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const descripcion = descripcionEl.value.trim();

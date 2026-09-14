@@ -20,6 +20,7 @@
   </head>
 
   <body>
+    <!--Sidebar-->
     <nav class="sidebar">
       <header>
         <div class="header">
@@ -43,12 +44,6 @@
               <a href="#/">
                 <i class="bx bx-home icon"></i>
                 <span class="text nav-text">Inicio</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="#/agregar-transaccion">
-                <i class="bx bx-plus-circle icon"></i>
-                <span class="text nav-text">Agregar Transaccion</span>
               </a>
             </li>
             <li class="nav-link">
@@ -79,51 +74,79 @@
       </div>
     </nav>
 
+    <!--========== Sections ==========-->
     <main class="home">
+      <!--Seccion Inicio-->
       <section id="inicio" class="section active">
+
         <h1>Inicio</h1>
 
-        <div class="saldo-display">
-          <h2>Tu saldo</h2>
-          <h1 id="saldo">$0.00</h1>
-        </div>
-
-        <div class="resumen">
-          <div class="ingresos">
-            <h3>Ingresos</h3>
-            <p id="ingresos-valor">$0.00</p>
+        <div class=" resumen saldos">
+          <div class="efectivo">
+            <h3>Efectivo</h3>
+            <p id="efectivo-saldo">$0.00</p>
           </div>
-          <div class="egresos">
-            <h3>Egresos</h3>
-            <p id="egresos-valor">$0.00</p>
+          <div class=" resumen tarjeta">
+            <h3>Tarjeta</h3>
+            <p id="egresos-saldo">$0.00</p>
+          </div>
+          <div class=" resumen ahorros">
+            <h3>Ahorros</h3>
+            <p id="ahorros-saldo">$0.00</p>
           </div>
         </div>
 
         <div class="transacciones">
           <h3>Ultimas Transacciones</h3>
-          <ul id="transacciones-lista"></ul>
+          <div class="contenedor-tabla">
+            <table id="tabla-ultimas">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Fuente</th>
+                  <th>Categoria</th>
+                  <th>Monto</th>
+                  <th>Descripcion</th>
+                </tr>
+                <tbody>
+                    <tr>
+                    <td>Ingreso</td>
+                    <td>Efectivo</td>
+                    <td>Salario</td>
+                    <td>$1,200.00</td>
+                    <td>Pago de nómina</td>
+                  </tr>
+                  <tr>
+                    <td>Egreso</td>
+                    <td>Tarjeta</td>
+                    <td>Comida</td>
+                    <td>-$45.50</td>
+                    <td>Supermercado</td>
+                  </tr>
+                  <tr>
+                    <td>Egreso</td>
+                    <td>Efectivo</td>
+                    <td>Transporte</td>
+                    <td>-$12.00</td>
+                    <td>Pasaje de bus</td>
+                  </tr>
+                  <tr>
+                    <td>Ingreso</td>
+                    <td>Ahorros</td>
+                    <td>Interés</td>
+                    <td>$25.00</td>
+                    <td>Interés mensual</td>
+                  </tr>
+                </tbody>
+              </thead>
+            </table>
+          </div>
+          <div class="ver-todas-boton">
+            <a href="#/transacciones" class="ver-todas">Ver todas las Transacciones</a>
+          </div>
         </div>
       </section>
-
-      <section id="agregar-transaccion" class="section">
-        <h1>Agregar Transacción</h1>
-
-        <form id="transacciones-formulario">
-          <div class="form-group">
-            <label for="descripcion">Descripcion</label>
-            <input type="text" id="descripcion" placeholder="Ingrese una descripcion..." required>
-          </div>
-
-          <div class="form-group">
-            <label for="monto">Monto</label>
-            <input type="text" id="monto" inputmode="decimal" placeholder="Ingrese un monto..." required>
-            <small>Use el simbolo negativo (-) para salidas.</small>
-          </div>
-
-          <button type="submit">Agregar Transaccion</button>
-        </form>
-      </section>
-
+      <!--Seccion Transacciones-->
       <section id="transacciones" class="section">
         <h1>Transacciones</h1>
         <p>Aqui ira la tabla de transacciones</p>
