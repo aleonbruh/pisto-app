@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ES">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Icons by Boxicons-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+
+    <title>Pisto</title>
+  </head>
+
+  <body>
+    <nav class="sidebar">
+      <header>
+        <div class="header">
+          <span class="image">
+            <img src="img/icon.webp" alt="logo" />
+          </span>
+
+          <div class="text header-text">
+            <span class="name">Pisto</span>
+            <span class="descripcion">App de Finanzas</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"></i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="#/">
+                <i class="bx bx-home icon"></i>
+                <span class="text nav-text">Inicio</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#/agregar-transaccion">
+                <i class="bx bx-plus-circle icon"></i>
+                <span class="text nav-text">Agregar Transaccion</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#/transacciones">
+                <i class="bx bx-table icon"></i>
+                <span class="text nav-text">Transacciones</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="#/cuentas">
+                <i class="bx bx-wallet icon"></i>
+                <span class="text nav-text">Cuentas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bottom-content">
+          <ul>
+              <li class="nav-link">
+              <a href="#/config">
+                <i class="bx bx-cog icon"></i>
+                <span class="text nav-text">Configuracion</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="home">
+      <section id="inicio" class="section active">
+        <h1>Inicio</h1>
+
+        <div class="saldo-display">
+          <h2>Tu saldo</h2>
+          <h1 id="saldo">$0.00</h1>
+        </div>
+
+        <div class="resumen">
+          <div class="ingresos">
+            <h3>Ingresos</h3>
+            <p id="ingresos-valor">$0.00</p>
+          </div>
+          <div class="egresos">
+            <h3>Egresos</h3>
+            <p id="egresos-valor">$0.00</p>
+          </div>
+        </div>
+
+        <div class="transacciones">
+          <h3>Ultimas Transacciones</h3>
+          <ul id="transacciones-lista"></ul>
+        </div>
+      </section>
+
+      <section id="agregar-transaccion" class="section">
+        <h1>Agregar Transacción</h1>
+
+        <form id="transacciones-formulario">
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" id="descripcion" placeholder="Ingrese una descripcion..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="monto">Monto</label>
+            <input type="text" id="monto" inputmode="decimal" placeholder="Ingrese un monto..." required>
+            <small>Use el simbolo negativo (-) para salidas.</small>
+          </div>
+
+          <button type="submit">Agregar Transaccion</button>
+        </form>
+      </section>
+
+      <section id="transacciones" class="section">
+        <h1>Transacciones</h1>
+        <p>Aqui ira la tabla de transacciones</p>
+      </section>
+
+      <section id="cuentas" class="section">
+        <h1>Cuentas</h1>
+        <p>Aqui iran los saldos de efectivo, tarjeta, ahorro y credito</p>
+      </section>
+
+      <section id="config" class="section">
+        <h1>Configuracion</h1>
+        <p>Aqui iran los ajustes y temas</p>
+      </section>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
