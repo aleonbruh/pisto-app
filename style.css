@@ -29,10 +29,12 @@
   --ahorros-hover: rgba(245, 158, 11, 0.2);
 
   /*Transiciones*/
+  --tran-01: all 0.1s ease;
   --tran-02: all 0.2s ease;
   --tran-03: all 0.3s ease;
   --tran-04: all 0.4s ease;
-  --tran-05: all 0.5s ease;
+
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -45,7 +47,7 @@ body {
   font-size: 16px;
   font-weight: 500;
   color: var(--color-texto);
-  transition: var(--tran-04);
+  transition: var(--tran-03);
   white-space: nowrap;
   opacity: 1;
 }
@@ -68,7 +70,7 @@ body {
   width: 270px;
   padding: 20px 20px;
   background: var(--color-sidebar);
-  transition: var(--tran-05);
+  transition: var(--tran-04);
   display: flex;
   flex-direction: column;
 }
@@ -96,7 +98,7 @@ body {
 .sidebar li .icon,
 .sidebar li .text {
   color: var(--color-texto);
-  transition: var(--tran-02);
+  transition: var(--tran-01);
 }
 
 .sidebar header {
@@ -154,6 +156,11 @@ header .header .header-text {
   transition: var(--tran-04);
 }
 
+.sidebar li a:active {
+  transform: scale(0.95);
+  background: var(--efectivo-hover);
+}
+
 .sidebar li a:hover {
   background: var(--efectivo-primary);
 }
@@ -174,7 +181,7 @@ header .header .header-text {
 .home {
   margin-left: 270px;
   padding: 60px;
-  transition: var(--tran-05);
+  transition: var(--tran-04);
   color: var(--color-texto);
   display: flex;
   justify-content: center;
@@ -191,7 +198,7 @@ header .header .header-text {
 .section {
   display: none;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
 }
 
 .section.active {
@@ -216,7 +223,7 @@ header .header .header-text {
   font-weight: 600;
   color: var(--color-texto);
   opacity: 0.5;
-  transform: var(--tran-05);
+  transform: var(--tran-04);
 }
 
 .efectivo:hover h3,
@@ -234,7 +241,7 @@ header .header .header-text {
   padding: 1.5rem;
   border-radius: 1rem;
   border-left: 5px solid;
-  transition: var(--tran-02);
+  transition: var(--tran-01);
 }
 
 .efectivo:hover,
@@ -311,7 +318,7 @@ header .header .header-text {
 
 #tabla-transacciones tbody tr:hover, #tabla-ultimas tbody tr:hover {
   background: var(--tarjeta-hover);
-  transition: background var(--tran-02);
+  transition: background var(--tran-01);
 }
 
 #tabla-transacciones tbody td:nth-child(4), #tabla-ultimas tbody td:nth-child(4) {
@@ -324,15 +331,123 @@ header .header .header-text {
   margin-top: 16px;
   padding: 16px;
   background: var(--tarjeta-border);
-  color: var(--color-fondo);
+  color: var(--color-texto);
   font-weight: 600;
   font-size: 16px;
   text-decoration: none;
   border-radius: 16px;
-  transition: var(--tran-02);
+  transition: var(--tran-01);
 }
 
 .ver-todas:hover {
   background: var(--tarjeta-primary);
   transform: translateY(-2px);
+}
+
+.ver-todas:active {
+  transform: scale(0.95);
+  box-shadow: var(--box-shadow);
+}
+
+/* ========== Formulario para las Transacciones ==========*/
+
+.fila-campos {
+  display: grid;
+}
+
+.fila-campos.tres {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.fila-campos.dos {
+  grid-template-columns: 1fr 1fr;
+}
+
+.agregar-transacciones {
+  margin: 8px auto;
+  background: var(--color-sidebar);
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 750px;
+}
+
+.agregar-transacciones h3 {
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--color-texto);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+input, select {
+  width: 90%;
+  padding: 8px;
+  border: 2px solid var(--color-texto);
+  border-radius: 8px;
+  font-size: 12px;
+  background: var(--color-texto);
+  color: var(--color-fondo);
+  transition: var(--tran-02);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--tarjeta-primary);
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+select {
+  cursor: pointer;
+}
+
+small {
+  color: var(--color-texto);
+  opacity: 0.6;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  overflow-wrap: break-word;
+}
+
+.agregar-transacciones button[type="submit"] {
+  width: 40%;
+  display: block;
+  margin: 16px auto 0;
+  padding: 12px;
+  background: var(--tarjeta-hover);
+  color: var(--color-texto);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  transition: var(--tran-02);
+  margin-top: 4px;
+}
+
+.agregar-transacciones button[type="submit"]:hover {
+  background: var(--tarjeta-primary);
+  transform: translateY(-2px);
+}
+
+.agregar-transacciones button[type="submit"]:active {
+  transform: scale(0.97);
 }

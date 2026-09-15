@@ -76,6 +76,7 @@
 
     <!--========== Sections ==========-->
     <main class="home">
+
       <!--Seccion Inicio-->
       <section id="inicio" class="section active">
 
@@ -146,10 +147,103 @@
           </div>
         </div>
       </section>
+
       <!--Seccion Transacciones-->
       <section id="transacciones" class="section">
+
         <h1>Transacciones</h1>
-        <p>Aqui ira la tabla de transacciones</p>
+
+        <div class="agregar-transacciones">
+            <h3>Agregar Transaccion</h3>
+
+            <form id="transaccion-formulario">
+
+                <div class="fila-campos tres">
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <select id="tipo" required>
+                            <option value="ingreso">Ingreso</option>
+                            <option value="egreso">Egreso</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuente">Fuente</label>
+                        <select id="fuente" required>
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                            <option value="ahorros">Ahorros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <input type="text" id="categoria" placeholder="Ej: Gastos Fijos" required>
+                    </div>
+                </div>
+
+                <div class="fila-campos dos">
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" id="descripcion" placeholder="Ej: Facturas" autocomplete="off" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monto">Monto</label>
+                        <input type="number" id="monto" placeholder="0.00" step="0.01" min="0" autocomplete="off" required>
+                        <small>Siempre positivo, el tipo decide si es suma o resta.</small>
+                    </div>
+                </div>
+
+                <button type="submit">Agregar Transaccion</button>
+            </form>
+        </div>
+
+        <div class="transacciones">
+          <div class="contenedor-tabla">
+            <table id="tabla-transacciones">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Fuente</th>
+                  <th>Categoria</th>
+                  <th>Monto</th>
+                  <th>Descripcion</th>
+                </tr>
+                <tbody>
+                    <tr>
+                    <td>Ingreso</td>
+                    <td>Efectivo</td>
+                    <td>Salario</td>
+                    <td>$1,200.00</td>
+                    <td>Pago de nómina</td>
+                  </tr>
+                  <tr>
+                    <td>Egreso</td>
+                    <td>Tarjeta</td>
+                    <td>Comida</td>
+                    <td>-$45.50</td>
+                    <td>Supermercado</td>
+                  </tr>
+                  <tr>
+                    <td>Egreso</td>
+                    <td>Efectivo</td>
+                    <td>Transporte</td>
+                    <td>-$12.00</td>
+                    <td>Pasaje de bus</td>
+                  </tr>
+                  <tr>
+                    <td>Ingreso</td>
+                    <td>Ahorros</td>
+                    <td>Interés</td>
+                    <td>$25.00</td>
+                    <td>Interés mensual</td>
+                  </tr>
+                </tbody>
+              </thead>
+            </table>
+          </div>
+        </div>
       </section>
 
       <section id="cuentas" class="section">
