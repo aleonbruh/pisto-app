@@ -1,12 +1,22 @@
-// Capa de datos: maneja el arreglo de transacciones y localStorage
-let transacciones = JSON.parse(localStorage.getItem("transacciones")) || [];
+const STORAGE_KEY = "transacciones";
+
+let transacciones = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
 function guardarTransacciones() {
-  localStorage.setItem("transacciones", JSON.stringify(transacciones));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(transacciones));
 }
 
-function añadirTransaccion(descripcion, monto) {
-  transacciones.push({ id: Date.now(), descripcion, monto });
+function añadirTransaccion({ tipo, fuente, categoria, descripcion, monto }) {
+  const montoConSigno = tipo === "egreso" ? -Math.abs(monto) : Math.abs(monto);
+
+  transacciones.push({
+    id: Date.now(),
+    tipo,
+    fuente,
+    categoria,
+    descripcion,
+    monto: montoConSigno,
+  });
   guardarTransacciones();
 }
 

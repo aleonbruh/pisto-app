@@ -1,50 +1,65 @@
-// Capa de UI: dibuja los datos en el DOM
-
-function actualizarTransaccionesLista() {
-  transaccionesListaEl.innerHTML = "";
+function renderTransacciones(tabla, limite) {
+  const tbody = tabla.querySelector("tbody");
+  tbody.innerHTML = "";
 
   const ordenadas = [...transacciones].reverse();
+  const visibles = limite ? ordenadas.slice(0, limite) : ordenadas;
 
-  ordenadas.forEach((transaccion) => {
-    transaccionesListaEl.appendChild(crearTransaccionEl(transaccion));
+  visibles.forEach((t) => {
+    tbody.appendChild(crearFila(t, tabla));
   });
 }
 
-function crearTransaccionEl(transaccion) {
-  const li = document.createElement("li");
-  li.classList.add("transaccion");
-  li.classList.add(transaccion.monto > 0 ? "ingreso" : "egreso");
+function crearFila(t, tabla) {
+  const tr = document.createElement("tr");
 
-  const spanDescripcion = document.createElement("span");
-  spanDescripcion.textContent = transaccion.descripcion;
+  const celdas = [
+    t.tipo === "egreso" ? "Egreso" : "Ingreso",
+    t.fuente.charAt(0).toUpperCase() + t.fuente.slice(1),
+    t.categoria,
+    formatCurrency(t.monto),
+    t.descripcion,
+  ];
 
-  const spanMonto = document.createElement("span");
-  spanMonto.textContent = formatCurrency(transaccion.monto);
+  celdas.forEach((valor) => {
+    const td = document.createElement("td");
+    td.textContent = valor;
+    tr.appendChild(td);
+  });
 
-  const botonBorrar = document.createElement("button");
-  botonBorrar.classList.add("borrar-btn");
-  botonBorrar.textContent = "x";
-  botonBorrar.addEventListener("click", () => borrarTransaccion(transaccion.id));
+  if (tabla !== tablaUltimasEl) {
+    const tdAcciones = document.createElement("td");
+    const btnBorrar = document.createElement("button");
+    btnBorrar.classList.add("borrar-btn");
+    btnBorrar.textContent = "×";
+    btnBorrar.addEventListener("click", () => {
+      borrarTransaccion(t.id);
+      renderTransacciones(tablaUltimasEl, 5);
+      renderTransacciones(tablaTransaccionesEl)
+      actualizarSaldos();
+    });
+    tdAcciones.appendChild(btnBorrar);
+    tdAcciones.classList.add("acciones");
+    tr.appendChild(tdAcciones);
+  }
 
-  spanMonto.appendChild(botonBorrar);
-  li.appendChild(spanDescripcion);
-  li.appendChild(spanMonto);
-
-  return li;
+  return tr;
 }
 
-function actualizarResumen() {
-  const saldo = transacciones.reduce((acc, t) => acc + t.monto, 0);
-  const ingresos = transacciones
-    .filter((t) => t.monto > 0)
+function actualizarSaldos() {
+  const saldoEfectivo = transacciones
+    .filter((t) => t.fuente === "efectivo")
     .reduce((acc, t) => acc + t.monto, 0);
-  const egresos = transacciones
-    .filter((t) => t.monto < 0)
+  const saldoTarjeta = transacciones
+    .filter((t) => t.fuente === "tarjeta")
+    .reduce((acc, t) => acc + t.monto, 0);
+  const saldoAhorros = transacciones
+    .filter((t) => t.fuente === "ahorros")
     .reduce((acc, t) => acc + t.monto, 0);
 
-  saldoEl.textContent = formatCurrency(saldo);
-  ingresosValorEl.textContent = formatCurrency(ingresos);
-  egresosValorEl.textContent = formatCurrency(egresos);
+  efectivoSaldoEl.textContent = formatCurrency(saldoEfectivo);
+  tarjetaSaldoEl.textContent = formatCurrency(saldoTarjeta);
+  ahorrosSaldoEl.textContent = formatCurrency(saldoAhorros);
 }
 
 function formatCurrency(number) {
@@ -53,9 +68,3 @@ function formatCurrency(number) {
     currency: "USD",
   }).format(number);
 }
-
-// Lo que da el id cuando se va borrar una transaccion
-const botonBorrar = document.createElement("button");
-botonBorrar.classList.add("borrar-btn");
-botonBorrar.textContent = "x";
-botonBorrar.dataset.id = transaccion.id;

@@ -165,6 +165,10 @@ header .header .header-text {
   background: var(--efectivo-primary);
 }
 
+.sidebar li a.active {
+  background: var(--efectivo-primary);
+}
+
 .sidebar .menu-bar {
   display: flex;
   flex-direction: column;
@@ -286,13 +290,22 @@ header .header .header-text {
   background: var(--color-sidebar);
   border-radius: 8px;
   padding: 16px;
+  max-height: 345px;
   overflow-x: auto;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sidebar) transparent;
+}
+
+.contenedor-tabla:hover {
+  scrollbar-color: var(--color-texto) transparent;
 }
 
 #tabla-transacciones, #tabla-ultimas {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  scrollbar-width: none;
 }
 
 #tabla-transacciones thead th, #tabla-ultimas thead th {
@@ -321,32 +334,51 @@ header .header .header-text {
   transition: background var(--tran-01);
 }
 
-#tabla-transacciones tbody td:nth-child(4), #tabla-ultimas tbody td:nth-child(4) {
-  text-align: right;
-  font-weight: 500;
+.borrar-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 20px;
+  line-height:1;
+  padding: 4px 10px;
+  opacity: 0;
+  transition: var(--tran-02);
+  border-radius: 4px;
+}
+
+#tabla-transacciones tbody tr:hover .borrar-btn, #tabla-ultimas tbody tr:hover .borrar-btn {
+  opacity: 1;
+}
+
+.borrar-btn:hover {
+  background: rgba(239, 68, 68, 0.377);
+}
+
+.borrar-btn:active {
+  transform: scale(0.85) rotate(90deg);
+  color: var(--color-texto);
+}
+
+td.acciones {
+  text-align: center;
+}
+
+.ver-todas-contenedor {
+  margin-top: 4px;
+  text-align: center;
 }
 
 .ver-todas {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 16px;
-  background: var(--tarjeta-border);
   color: var(--color-texto);
-  font-weight: 600;
-  font-size: 16px;
+  opacity: 0.5;
+  font-size: 12px;
   text-decoration: none;
-  border-radius: 16px;
   transition: var(--tran-01);
 }
 
 .ver-todas:hover {
-  background: var(--tarjeta-primary);
-  transform: translateY(-2px);
-}
-
-.ver-todas:active {
-  transform: scale(0.95);
-  box-shadow: var(--box-shadow);
+  opacity: 1;
 }
 
 /* ========== Formulario para las Transacciones ==========*/
